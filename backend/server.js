@@ -1,6 +1,10 @@
 const express = require("express");
-const connectDB = require("./config/db"); 
+const connectDB = require("./config/db");
+
+const cors = require("cors");
 require("dotenv").config();
+
+
 const cinemasRoute = require('./routes/api/cinemas.routes.js');
 const moviesRoute = require('./routes/api/movies.routes.js');
 const screensRoute=require('./routes/api/screens.routes.js');
@@ -10,6 +14,7 @@ const bookingsRoute=require('./routes/api/bookings.routes.js');
 
 
 const app = express();
+app.use(cors()); 
 
 connectDB();
 
