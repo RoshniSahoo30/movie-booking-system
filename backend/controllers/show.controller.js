@@ -3,6 +3,7 @@ const Screen = require("../models/Screen.model");
 
 exports.getAllShows = async (req, res) => {
   try {
+    
     const shows = await Show.find().populate("movie").populate("screen");
     res.json(shows);
   } catch (err) {
@@ -17,9 +18,9 @@ exports.getShowsByCinema = async (req, res) => {
     const cinemaId = req.params.cinemaId;
     console.log(`1. Fetching shows for cinema ID: ${cinemaId}`);
 
-    // Find all screens that belong to the given cinema ID
+   
     const screens = await Screen.find({ cinema: cinemaId });
-    console.log("2. Found screens:", screens); 
+    console.log("2. Found screens:", screens); // <-- Let's see if this finds anything
 
     const screenIds = screens.map((screen) => screen._id);
     console.log("3. Extracted Screen IDs:", screenIds);
@@ -39,6 +40,28 @@ exports.getShowsByCinema = async (req, res) => {
   } catch (err) {
     console.error("Error in getShowsByCinema:", err.message);
     res.status(500).send("Server Error");
+  }
+};
+
+
+
+exports.getShowById = async (req, res) => {
+  try {
+    const show = await Show.findById(req.params.showId)
+      .populate('movie')
+      .populate({
+        path: 'screen',
+        populate: {
+          path: 'cinema'
+        }
+      });
+    if (!show) {
+      return res.status(404).json({ msg: 'Show not found' });
+    }
+    res.json(show);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 };
 
