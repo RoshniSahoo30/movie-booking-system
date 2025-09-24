@@ -33,10 +33,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
+    <div className="max-w-md mx-auto mt-10 text-white">
+      <h1 className="text-3xl font-bold mb-6 text-white">Sign Up</h1>
       <form onSubmit={onSubmit}>
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <input
             type="text"
             placeholder="Name"
@@ -44,10 +44,10 @@ const RegisterPage = () => {
             value={name}
             onChange={onChange}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-white"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <input
             type="email"
             placeholder="Email Address"
@@ -55,10 +55,10 @@ const RegisterPage = () => {
             value={email}
             onChange={onChange}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-white"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <input
             type="password"
             placeholder="Password"
@@ -67,7 +67,7 @@ const RegisterPage = () => {
             onChange={onChange}
             required
             minLength="6"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-white"
           />
         </div>
         <button
