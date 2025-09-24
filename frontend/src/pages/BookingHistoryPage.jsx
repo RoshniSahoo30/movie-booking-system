@@ -28,32 +28,26 @@ const BookingHistoryPage = () => {
   }, [user]);
 
   if (loading) {
-    return <p>Loading your bookings...</p>;
+    return <p className="text-white/80">Loading your bookings...</p>;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">My Booking History</h1>
+      <h1 className="text-3xl md:text-4xl font-extrabold mb-6 heading-gradient">My Booking History</h1>
       {bookings.length === 0 ? (
-        <p>You have no bookings yet.</p>
+        <div className="card p-8 text-center">
+          <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-white/60 text-slate-700 flex items-center justify-center">☕</div>
+          <p className="text-slate-700">No bookings yet. Find a cinema and book your first show!</p>
+        </div>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bookings.map((booking) => (
-            <div
-              key={booking._id}
-              className="p-4 bg-white border rounded-lg shadow"
-            >
-              <h2 className="text-xl font-bold">{booking.show.movie.title}</h2>
-              <p className="text-gray-600">
-                {new Date(booking.show.startTime).toLocaleString()}
+            <div key={booking._id} className="card p-5">
+              <h2 className="text-xl font-bold text-slate-900">{booking.show.movie.title}</h2>
+              <p className="text-slate-600">{new Date(booking.show.startTime).toLocaleString()}</p>
+              <p className="text-slate-800 mt-2">
+                Seats: <span className="font-semibold">{booking.seats.join(", ")}</span>
               </p>
-              <p className="text-gray-800 mt-2">
-                Seats:{" "}
-                <span className="font-semibold">
-                  {booking.seats.join(", ")}
-                </span>
-              </p>
-              
             </div>
           ))}
         </div>

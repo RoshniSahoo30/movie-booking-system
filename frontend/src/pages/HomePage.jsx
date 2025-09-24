@@ -25,23 +25,27 @@ const HomePage = () => {
   }, []); 
 
   if (loading) {
-    return <p className="text-center text-gray-500">Loading cinemas...</p>;
+    return <p className="text-center text-white/80">Loading cinemas...</p>;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Select a Cinema</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="hero mb-8 text-white">
+        <h1 className="text-3xl md:text-5xl font-extrabold mb-2">MoviesBook</h1>
+        <p className="text-white/80 max-w-2xl">Discover movies, pick your seats, and book instantly. A simple, elegant experience for your next showtime.</p>
+      </section>
+      <h2 className="text-2xl md:text-3xl font-extrabold mb-6 heading-gradient">Select a Cinema</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {cinemas.map((cinema) => (
           <Link
             key={cinema._id}
             to={`/cinema/${cinema._id}`}
-            className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+            className="card block p-6 hover:shadow-xl hover:-translate-y-0.5 transition-transform"
           >
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+            <h5 className="mb-1 text-2xl font-bold tracking-tight text-slate-900">
               {cinema.name}
             </h5>
-            <p className="font-normal text-gray-700">{cinema.location}</p>
+            <p className="font-normal text-slate-600">{cinema.location}</p>
           </Link>
         ))}
       </div>

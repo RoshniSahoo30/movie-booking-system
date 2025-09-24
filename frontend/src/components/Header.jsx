@@ -12,31 +12,26 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 mb-8 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold hover:text-gray-300">
-          MovieBooker
+    <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/5 bg-white/0 border-b border-white/10 text-white">
+      <div className="container mx-auto h-16 flex justify-between items-center">
+        <Link to="/" className="text-xl md:text-2xl font-extrabold tracking-tight heading-gradient">
+          MoviesBook
         </Link>
-        <nav>
+        <nav className="flex items-center gap-2 sm:gap-3">
+          <Link to="/" className="hidden sm:inline-flex btn-ghost px-3 py-2">
+            Home
+          </Link>
           {user ? (
-
-            <div className="flex items-center gap-4">
-              <Link to="/history" className="hover:text-gray-300">
+            <>
+              <Link to="/history" className="btn-ghost px-3 py-2">
                 My Bookings
               </Link>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
+              <button onClick={handleLogout} className="btn-primary px-4 py-2">
                 Logout
               </button>
-            </div>
+            </>
           ) : (
-            // If user is not logged in
-            <Link
-              to="/login"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
+            <Link to="/login" className="btn-primary px-4 py-2">
               Login
             </Link>
           )}

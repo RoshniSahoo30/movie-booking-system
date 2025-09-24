@@ -74,5 +74,16 @@ export const login = async (credentials) => {
     }
   };
 
+  export const register = async (userData) => {
+    try {
+      // userData should be an object with { name, email, password }
+      const response = await api.post("/users", userData);
+      return response.data;
+    } catch (error) {
+      console.error("Registration failed:", error);
+      throw error;
+    }
+  };
+
 
 export default api;

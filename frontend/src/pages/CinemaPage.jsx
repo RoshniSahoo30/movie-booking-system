@@ -34,22 +34,25 @@ const CinemaPage = () => {
   }, [cinemaId]); 
 
   if (loading) {
-    return <p>Loading shows...</p>;
+    return <p className="text-white/80">Loading shows...</p>;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Now Showing</h1>
+      <div className="hero mb-8 text-white">
+        <h1 className="text-2xl md:text-4xl font-extrabold mb-2">Now Showing</h1>
+        <p className="text-white/80">Choose a showtime to continue to seat selection.</p>
+      </div>
       <div className="space-y-8">
         {Object.keys(groupedShows).map((movieTitle) => (
-          <div key={movieTitle}>
-            <h2 className="text-2xl font-semibold mb-4">{movieTitle}</h2>
-            <div className="flex flex-wrap gap-4">
+          <div key={movieTitle} className="card p-5">
+            <h2 className="text-2xl font-semibold mb-4 text-slate-900">{movieTitle}</h2>
+            <div className="flex flex-wrap gap-3">
               {groupedShows[movieTitle].map((show) => (
                 <Link
                   key={show._id}
                   to={`/show/${show._id}`}
-                  className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
+                  className="chip font-medium"
                 >
                   {new Date(show.startTime).toLocaleTimeString([], {
                     hour: "2-digit",

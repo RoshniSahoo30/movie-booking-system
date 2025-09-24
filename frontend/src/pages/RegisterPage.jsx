@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // 1. Import useAuth
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { register } from "../services/api";
 
-const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+const RegisterPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const { login } = useAuth(); // 2. Get the login function from the context
 
-  const { email, password } = formData;
+  const { name, email, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,19 +20,33 @@ const LoginPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      // 3. Call the context's login function with the form data
+      await register({ name, email, password });
+
+ 
       await login({ email, password });
-      navigate("/"); // Redirect to homepage on successful login
+
+      navigate("/");
     } catch (error) {
-      alert("Invalid Credentials");
+      alert("Registration failed. The email might already be in use.");
       console.log(error)
     }
   };
 
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
       <form onSubmit={onSubmit}>
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={onChange}
+            required
+            className="w-full px-3 py-2 border rounded"
+          />
+        </div>
         <div className="mb-4">
           <input
             type="email"
@@ -48,24 +66,25 @@ const LoginPage = () => {
             value={password}
             onChange={onChange}
             required
+            minLength="6"
             className="w-full px-3 py-2 border rounded"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
-          Login
+          Sign Up
         </button>
       </form>
       <p className="mt-4 text-center">
-        Don't have an account?{" "}
-        <Link to="/register" className="text-blue-500 hover:underline">
-          Sign Up
+        Already have an account?{" "}
+        <Link to="/login" className="text-blue-500 hover:underline">
+          Login
         </Link>
       </p>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

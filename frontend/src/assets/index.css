@@ -1,1 +1,79 @@
-@import 'tailwindcss'
+@import "tailwindcss";
+
+/* Global theme and typography */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@theme {
+  --color-brand-50: 245 243 255; /* violet-50 */
+  --color-brand-100: 237 233 254;
+  --color-brand-200: 221 214 254;
+  --color-brand-300: 196 181 253;
+  --color-brand-400: 167 139 250;
+  --color-brand-500: 139 92 246;
+  --color-brand-600: 124 58 237;
+  --color-brand-700: 109 40 217;
+  --color-brand-800: 91 33 182;
+  --color-brand-900: 76 29 149;
+}
+
+:root {
+  --app-bg-from: 15 23 42; /* slate-900 */
+  --app-bg-to: 2 6 23; /* slate-950 */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--app-bg-from)) 0%,
+    rgb(var(--app-bg-to)) 100%
+  );
+}
+
+/* Utility tweaks */
+.container {
+  @apply px-4 md:px-6;
+}
+
+.card {
+  @apply bg-white/90 backdrop-blur shadow-lg rounded-xl border border-slate-200;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed bg-brand-600 text-white hover:bg-brand-700;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed bg-white/0 text-white hover:bg-white/10;
+}
+
+.chip {
+  @apply inline-flex items-center rounded-full border border-brand-200/60 px-3 py-1 text-sm text-brand-800 bg-brand-50 hover:bg-brand-100 transition;
+}
+
+.heading-gradient {
+  @apply bg-gradient-to-r from-brand-400 to-brand-700 bg-clip-text text-transparent;
+}
+
+/* Hero backdrop helpers */
+.hero {
+  @apply relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur px-6 py-10 md:px-10 md:py-14;
+}
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(closest-side, rgba(139,92,246,0.35), transparent 70%);
+  filter: blur(16px);
+  pointer-events: none;
+}
