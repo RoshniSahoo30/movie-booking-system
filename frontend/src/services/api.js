@@ -30,5 +30,28 @@ export const getShowsByCinema = async (cinemaId) => {
   }
 };
 
+export const getShowDetails = async (showId) => {
+  try {
+    const response = await api.get(`/shows/${showId}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching details for show ${showId}:`, error);
+    throw error;
+  }
+};
+
+
+
+export const createBooking = async (bookingData) => {
+  try {
+    
+    const response = await api.post("/bookings", bookingData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    throw error;
+  }
+};
+
 
 export default api;
