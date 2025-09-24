@@ -27,3 +27,25 @@ exports.createBooking = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
+
+exports.getBookingsForUser = async (req, res) => {
+    try {
+      const bookings = await Booking.find({ user: req.params.userId })
+        .populate({
+          path: 'show',
+          populate: {
+            path: 'movie screen',
+          },
+        });
+        
+      if (!bookings) {
+        return res.json([]); 
+      }
+  
+      res.json(bookings);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  };

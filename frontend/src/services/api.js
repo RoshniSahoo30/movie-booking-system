@@ -54,4 +54,25 @@ export const createBooking = async (bookingData) => {
 };
 
 
+export const login = async (credentials) => {
+    try {
+      const response = await api.post("/auth/login", credentials);
+      return response.data; // This will be { token: "..." }
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    }
+  };
+  
+  export const getUserBookings = async (userId) => {
+    try {
+      const response = await api.get(`/bookings/user/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user bookings:", error);
+      throw error;
+    }
+  };
+
+
 export default api;

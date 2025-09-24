@@ -24,7 +24,7 @@ connectDB();
 
 app.use(express.json());
 
-
+app.use("/api/auth", require("./routes/api/auth.routes.js"));
 //using the routes-cinemas
 app.use('/api/cinemas', cinemasRoute);
 //using the routes-movies
