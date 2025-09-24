@@ -3,6 +3,7 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 const cinemasRoute = require('./routes/api/cinemas.routes.js');
 const moviesRoute = require('./routes/api/movies.routes.js');
+const screensRoute=require('./routes/api/screens.routes.js');
 
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use('/api/cinemas', cinemasRoute);
 //using the routes-movies
 app.use('/api/movies',moviesRoute);
+//using the routes-screens
+app.use('/api/screens',screensRoute);
 
 
 
