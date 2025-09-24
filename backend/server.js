@@ -5,7 +5,8 @@ const cinemasRoute = require('./routes/api/cinemas.routes.js');
 const moviesRoute = require('./routes/api/movies.routes.js');
 const screensRoute=require('./routes/api/screens.routes.js');
 const showsRoute=require('./routes/api/shows.routes.js');
-const usersRoute=require('./routes/api/users.routes.js')
+const usersRoute=require('./routes/api/users.routes.js');
+const bookingsRoute=require('./routes/api/bookings.routes.js');
 
 
 const app = express();
@@ -25,6 +26,8 @@ app.use('/api/screens',screensRoute);
 app.use('/api/shows',showsRoute);
 //using the routes-users
 app.use('/api/users',usersRoute);
+//using the routes-bookings
+app.use('/api/bookings',bookingsRoute);
 
 
 
