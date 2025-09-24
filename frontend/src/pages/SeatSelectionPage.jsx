@@ -29,16 +29,15 @@ const SeatSelectionPage = () => {
   }, [showId]);
 
   const handleSeatClick = (seatNumber) => {
-    // Prevent clicking on booked seats
+   
     if (show.bookedSeats.includes(seatNumber)) {
       return;
     }
 
-    // Logic to select/deselect seats
     if (selectedSeats.includes(seatNumber)) {
       setSelectedSeats(selectedSeats.filter((s) => s !== seatNumber));
     } else {
-      // Enforce max 6 seats
+      
       if (selectedSeats.length < 6) {
         setSelectedSeats([...selectedSeats, seatNumber]);
       } else {
@@ -57,7 +56,6 @@ const SeatSelectionPage = () => {
       return;
     }
 
-    // Replace this with the actual user ID you copied
     const userId =user.id;
 
     const bookingData = {
@@ -68,7 +66,7 @@ const SeatSelectionPage = () => {
 
     try {
       await createBooking(bookingData);
-      // On success, navigate to the confirmation page
+   
       navigate("/confirmation");
     } catch (error) {
       alert("Failed to create booking. Please try again.");
@@ -89,13 +87,13 @@ const SeatSelectionPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-2">{show.movie.title}</h1>
+      <h1 className="text-3xl font-bold mb-2 text-white">{show.movie.title}</h1>
       <p className="text-lg text-gray-600 mb-6">
         {show.screen.cinema.name} | {new Date(show.startTime).toLocaleString()}
       </p>
 
-      <div className="flex flex-col items-center">
-        <div className="p-4 border-2 border-dashed rounded-lg">
+      <div className="flex flex-col items-center text-white">
+        <div className="p-4 border-2 border-dashed rounded-lg text-black">
           {rows.map((row) => (
             <div key={row} className="flex">
               {cols.map((col) => {

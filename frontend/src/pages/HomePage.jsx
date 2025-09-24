@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllCinemas } from "../services/api"; // Import your API function
+import { getAllCinemas } from "../services/api"; 
 
 const HomePage = () => {
   

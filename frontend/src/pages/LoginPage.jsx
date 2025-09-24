@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // 1. Import useAuth
+import { useAuth } from "../context/AuthContext"; 
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { login } = useAuth(); // 2. Get the login function from the context
+  const { login } = useAuth(); 
 
   const { email, password } = formData;
 
@@ -16,7 +16,7 @@ const LoginPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      // 3. Call the context's login function with the form data
+      
       await login({ email, password });
       navigate("/"); // Redirect to homepage on successful login
     } catch (error) {
@@ -27,9 +27,9 @@ const LoginPage = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
       <form onSubmit={onSubmit}>
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <input
             type="email"
             placeholder="Email Address"
@@ -37,10 +37,10 @@ const LoginPage = () => {
             value={email}
             onChange={onChange}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-white"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <input
             type="password"
             placeholder="Password"
@@ -48,7 +48,7 @@ const LoginPage = () => {
             value={password}
             onChange={onChange}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-white"
           />
         </div>
         <button
@@ -58,7 +58,7 @@ const LoginPage = () => {
           Login
         </button>
       </form>
-      <p className="mt-4 text-center">
+      <p className="mt-4 text-center text-white">
         Don't have an account?{" "}
         <Link to="/register" className="text-blue-500 hover:underline">
           Sign Up

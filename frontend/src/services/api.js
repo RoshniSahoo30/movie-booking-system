@@ -57,7 +57,7 @@ export const createBooking = async (bookingData) => {
 export const login = async (credentials) => {
     try {
       const response = await api.post("/auth/login", credentials);
-      return response.data; // This will be { token: "..." }
+      return response.data; 
     } catch (error) {
       console.error("Login failed:", error);
       throw error;
@@ -76,7 +76,7 @@ export const login = async (credentials) => {
 
   export const register = async (userData) => {
     try {
-      // userData should be an object with { name, email, password }
+      
       const response = await api.post("/users", userData);
       return response.data;
     } catch (error) {
