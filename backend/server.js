@@ -14,7 +14,11 @@ const bookingsRoute=require('./routes/api/bookings.routes.js');
 
 
 const app = express();
-app.use(cors()); 
+const corsOptions = {
+    origin: 'http://localhost:5173', // Your frontend's origin
+    optionsSuccessStatus: 200
+  };
+app.use(cors(corsOptions)); 
 
 connectDB();
 
